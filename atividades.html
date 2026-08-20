@@ -1,0 +1,1461 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🛠️ Atividades Práticas - TEMA 7</title>
+    <style>
+        /* ============================================================
+           ESTILOS GERAIS
+           ============================================================ */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+            padding: 20px;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        /* ============================================================
+           HEADER
+           ============================================================ */
+        .header {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 25px;
+            text-align: center;
+            color: #fff;
+        }
+
+        .header h1 {
+            font-size: 2.2rem;
+            margin-bottom: 8px;
+        }
+
+        .header h1 span {
+            color: #fff;
+        }
+
+        .header p {
+            opacity: 0.9;
+            font-size: 1rem;
+        }
+
+        .badge-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+            margin-top: 15px;
+        }
+
+        .badge {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 5px 16px;
+            border-radius: 30px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: #fff;
+        }
+
+        /* ============================================================
+           CARDS
+           ============================================================ */
+        .card {
+            background: white;
+            border-radius: 20px;
+            padding: 25px;
+            margin-bottom: 25px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .card h2 {
+            color: #f5576c;
+            margin-bottom: 15px;
+            border-left: 5px solid #f5576c;
+            padding-left: 15px;
+            font-size: 1.4rem;
+        }
+
+        .card h3 {
+            color: #c0397a;
+            margin: 15px 0 10px 0;
+            font-size: 1.1rem;
+        }
+
+        .card p {
+            color: #2c3e50;
+            line-height: 1.7;
+            margin-bottom: 8px;
+        }
+
+        /* ============================================================
+           DESTAQUES
+           ============================================================ */
+        .highlight-box {
+            padding: 12px 16px;
+            border-radius: 10px;
+            margin: 8px 0;
+        }
+
+        .highlight-box.yellow {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+        }
+
+        .highlight-box.blue {
+            background: #d1ecf1;
+            border-left: 4px solid #17a2b8;
+        }
+
+        .highlight-box.green {
+            background: #d4edda;
+            border-left: 4px solid #28a745;
+        }
+
+        .highlight-box.orange {
+            background: #ffe5cc;
+            border-left: 4px solid #fd7e14;
+        }
+
+        .highlight-box.red {
+            background: #f8d7da;
+            border-left: 4px solid #dc3545;
+        }
+
+        .highlight-box.purple {
+            background: #e8d5f5;
+            border-left: 4px solid #6f42c1;
+        }
+
+        /* ============================================================
+           ATIVIDADES
+           ============================================================ */
+        .atividade {
+            background: #f8f9fa;
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 20px;
+            border: 2px solid #dee2e6;
+            transition: all 0.3s;
+        }
+
+        .atividade:hover {
+            border-color: #f5576c;
+        }
+
+        .atividade .numero {
+            display: inline-block;
+            background: #f5576c;
+            color: #fff;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 32px;
+            font-weight: bold;
+            font-size: 14px;
+            margin-right: 10px;
+        }
+
+        .atividade .titulo {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #1a1a2e;
+            display: inline-block;
+        }
+
+        .atividade .enunciado {
+            margin: 12px 0;
+            padding: 12px 16px;
+            background: white;
+            border-radius: 10px;
+            border-left: 4px solid #f5576c;
+        }
+
+        .atividade .enunciado code {
+            background: #e9ecef;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-family: monospace;
+            font-size: 0.9rem;
+        }
+
+        .atividade .exemplo-codigo {
+            background: #1a1a2e;
+            color: #e0e0e0;
+            padding: 12px 16px;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.8rem;
+            line-height: 1.8;
+            margin: 8px 0;
+            overflow-x: auto;
+            border: 1px solid #dee2e6;
+        }
+
+        .atividade .exemplo-codigo .comment {
+            color: #6c757d;
+            font-style: italic;
+        }
+
+        .atividade .exemplo-codigo .keyword {
+            color: #d63384;
+            font-weight: bold;
+        }
+
+        .atividade .exemplo-codigo .string {
+            color: #28a745;
+        }
+
+        .atividade .exemplo-codigo .number {
+            color: #fd7e14;
+        }
+
+        .atividade .exemplo-codigo .operator {
+            color: #dc3545;
+        }
+
+        .atividade .exemplo-codigo .function {
+            color: #007bff;
+        }
+
+        .atividade .exemplo-codigo .variable {
+            color: #6f42c1;
+        }
+
+        .atividade .saida-esperada {
+            background: #d4edda;
+            padding: 10px 14px;
+            border-radius: 8px;
+            margin: 8px 0;
+            font-family: 'Courier New', monospace;
+            font-size: 0.85rem;
+            border-left: 4px solid #28a745;
+        }
+
+        .atividade .saida-esperada strong {
+            color: #1e7e34;
+        }
+
+        /* ============================================================
+           CAMPO DE RESPOSTA
+           ============================================================ */
+        .campo-resposta {
+            margin: 12px 0;
+        }
+
+        .campo-resposta label {
+            display: block;
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 4px;
+        }
+
+        .campo-resposta textarea {
+            width: 100%;
+            padding: 10px 14px;
+            border: 2px solid #dee2e6;
+            border-radius: 10px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.85rem;
+            resize: vertical;
+            min-height: 60px;
+            transition: all 0.3s;
+            background: white;
+        }
+
+        .campo-resposta textarea:focus {
+            outline: none;
+            border-color: #f5576c;
+            box-shadow: 0 0 0 3px rgba(245, 87, 108, 0.2);
+        }
+
+        .campo-resposta textarea.correct {
+            border-color: #28a745;
+            background: #d4edda;
+        }
+
+        .campo-resposta textarea.wrong {
+            border-color: #dc3545;
+            background: #f8d7da;
+        }
+
+        .campo-resposta textarea.disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+        }
+
+        /* ============================================================
+           BOTÕES
+           ============================================================ */
+        .btn {
+            background: linear-gradient(135deg, #f093fb, #f5576c);
+            color: #fff;
+            border: none;
+            padding: 10px 24px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 0.95rem;
+            transition: all 0.3s;
+            margin: 4px;
+            font-weight: 600;
+        }
+
+        .btn:hover {
+            transform: scale(1.03);
+            box-shadow: 0 5px 15px rgba(245, 87, 108, 0.4);
+        }
+
+        .btn-secondary {
+            background: #6c757d;
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            background: #5a6268;
+        }
+
+        .btn-success {
+            background: #28a745;
+            color: white;
+        }
+
+        .btn-success:hover {
+            background: #218838;
+        }
+
+        .btn-danger {
+            background: #dc3545;
+            color: white;
+        }
+
+        .btn-danger:hover {
+            background: #c82333;
+        }
+
+        .btn-sm {
+            padding: 6px 16px;
+            font-size: 0.8rem;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-top: 10px;
+        }
+
+        /* ============================================================
+           RESULTADO
+           ============================================================ */
+        .resultado-item {
+            padding: 4px 0;
+            font-size: 0.9rem;
+        }
+
+        .resultado-item.correct {
+            color: #28a745;
+        }
+
+        .resultado-item.wrong {
+            color: #dc3545;
+        }
+
+        .resultado-item .sugestao {
+            color: #6c757d;
+            font-size: 0.85rem;
+            margin-left: 20px;
+            font-family: 'Courier New', monospace;
+            background: #f8f9fa;
+            padding: 4px 10px;
+            border-radius: 4px;
+            display: inline-block;
+        }
+
+        .result-box {
+            background: #f8f9fa;
+            border-radius: 16px;
+            padding: 20px;
+            text-align: center;
+            border: 3px solid #f5576c;
+            display: none;
+            margin-top: 20px;
+        }
+
+        .result-box.show {
+            display: block;
+        }
+
+        .score {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #f5576c;
+        }
+
+        /* ============================================================
+           FOOTER
+           ============================================================ */
+        .footer {
+            text-align: center;
+            padding: 20px;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 12px;
+        }
+
+        .btn-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #f5576c;
+            color: #fff;
+            border: none;
+            padding: 10px 18px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 12px;
+            font-weight: 600;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-top:hover {
+            transform: scale(1.05);
+        }
+
+        /* ============================================================
+           RESPONSIVO
+           ============================================================ */
+        @media (max-width: 768px) {
+            .card {
+                padding: 18px;
+            }
+            .header h1 {
+                font-size: 1.5rem;
+            }
+            .header {
+                padding: 20px;
+            }
+            .atividade {
+                padding: 15px;
+            }
+            .btn-group {
+                flex-direction: column;
+            }
+            .btn-group .btn {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            body {
+                padding: 10px;
+            }
+            .header h1 {
+                font-size: 1.2rem;
+            }
+            .badge {
+                font-size: 0.65rem;
+                padding: 3px 10px;
+            }
+            .atividade .exemplo-codigo {
+                font-size: 0.7rem;
+                padding: 10px;
+            }
+            .campo-resposta textarea {
+                font-size: 0.75rem;
+                min-height: 50px;
+            }
+        }
+
+        @media print {
+            .no-print {
+                display: none !important;
+            }
+            .card {
+                break-inside: avoid;
+                page-break-inside: avoid;
+                box-shadow: none;
+                border: 1px solid #ddd;
+            }
+            .header {
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+            .badge {
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+            body {
+                background: white !important;
+                padding: 10px !important;
+            }
+            .container {
+                max-width: 100% !important;
+            }
+            .btn-top {
+                display: none !important;
+            }
+            .highlight-box {
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+            .atividade {
+                break-inside: avoid;
+                page-break-inside: avoid;
+                border: 1px solid #ddd;
+            }
+            .atividade .exemplo-codigo {
+                background: #f5f5f5;
+                color: #1a1a2e;
+            }
+            .atividade .exemplo-codigo .comment {
+                color: #6c757d;
+            }
+            .atividade .exemplo-codigo .keyword {
+                color: #d63384;
+            }
+            .atividade .exemplo-codigo .string {
+                color: #28a745;
+            }
+            .atividade .exemplo-codigo .number {
+                color: #fd7e14;
+            }
+            .atividade .exemplo-codigo .operator {
+                color: #dc3545;
+            }
+            .atividade .exemplo-codigo .function {
+                color: #007bff;
+            }
+            .atividade .exemplo-codigo .variable {
+                color: #6f42c1;
+            }
+            .campo-resposta textarea {
+                border: 1px solid #ddd !important;
+            }
+            .campo-resposta textarea.correct {
+                background: #d4edda !important;
+            }
+            .campo-resposta textarea.wrong {
+                background: #f8d7da !important;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+
+        <!-- ============================================================
+        HEADER
+        ============================================================ -->
+        <div class="header">
+            <h1>🛠️ Atividades Práticas - TEMA <span>7</span></h1>
+            <p>Funções em JavaScript</p>
+            <div class="badge-group">
+                <span class="badge">📝 8 atividades</span>
+                <span class="badge">💻 OneCompiler</span>
+                <span class="badge">🧩 function | arrow | closures</span>
+            </div>
+        </div>
+
+        <!-- ============================================================
+        INTRODUÇÃO
+        ============================================================ -->
+        <div class="card no-print">
+            <h2>📖 Instruções</h2>
+            <p>Para cada atividade:</p>
+            <ol style="margin: 10px 0 10px 25px; color: #2c3e50; line-height: 1.8;">
+                <li>Leia o <strong>enunciado</strong> com atenção</li>
+                <li>Clique em <strong>"Abrir no OneCompiler"</strong> para escrever seu código</li>
+                <li>Execute o código e copie a <strong>saída do console</strong></li>
+                <li>Cole a saída no campo <strong>"Sua resposta"</strong></li>
+                <li>Clique em <strong>"Verificar"</strong> para corrigir</li>
+            </ol>
+            <div class="highlight-box yellow">
+                💡 <strong>DICA:</strong> Use <code>console.log()</code> para exibir os resultados no console do OneCompiler!
+            </div>
+        </div>
+
+        <!-- ============================================================
+        ATIVIDADE 1
+        ============================================================ -->
+        <div class="card">
+            <h2>📝 Atividades</h2>
+
+            <!-- ATIVIDADE 1: FUNÇÃO NOMEADA -->
+            <div class="atividade" id="atv1">
+                <div>
+                    <span class="numero">1</span>
+                    <span class="titulo">Função Nomeada - Verificador de Números</span>
+                </div>
+
+                <div class="enunciado">
+                    <p><strong>📌 Enunciado:</strong></p>
+                    <p>Crie uma função nomeada chamada <code>verificarNumero</code> que:</p>
+                    <ul style="margin: 8px 0 8px 20px;">
+                        <li>Recebe um número como parâmetro</li>
+                        <li>Retorna <strong>"Positivo"</strong> se o número for maior que 0</li>
+                        <li>Retorna <strong>"Negativo"</strong> se o número for menor que 0</li>
+                        <li>Retorna <strong>"Zero"</strong> se o número for igual a 0</li>
+                    </ul>
+                    <p>Teste a função com os números: <code>5</code>, <code>-3</code> e <code>0</code>.</p>
+
+                    <div class="highlight-box blue" style="margin-top: 8px;">
+                        🔗 <strong>Link útil:</strong>
+                        <button class="btn btn-sm" onclick="abrirOneCompiler('atv1')" style="margin-left:8px;">
+                            ▶️ Abrir no OneCompiler
+                        </button>
+                    </div>
+                </div>
+
+                <div class="exemplo-codigo">
+                    <span class="comment">// Dica: função nomeada</span>
+                    <span class="keyword">function</span> <span class="function">verificarNumero</span>(num) {<br>
+                    &nbsp;&nbsp;<span class="keyword">if</span> (num <span class="operator">></span> <span class="number">0</span>) {<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">return</span> <span class="string">"Positivo"</span>;<br>
+                    &nbsp;&nbsp;} <span class="keyword">else if</span> (num <span class="operator"><</span> <span class="number">0</span>) {<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">return</span> <span class="string">"Negativo"</span>;<br>
+                    &nbsp;&nbsp;} <span class="keyword">else</span> {<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">return</span> <span class="string">"Zero"</span>;<br>
+                    &nbsp;&nbsp;}<br>
+                    }
+                </div>
+
+                <div class="saida-esperada">
+                    <strong>✅ Saída esperada:</strong><br>
+                    Positivo<br>
+                    Negativo<br>
+                    Zero
+                </div>
+
+                <div class="campo-resposta">
+                    <label>📋 Cole aqui a saída do console:</label>
+                    <textarea id="resposta1" placeholder="Cole a saída do OneCompiler aqui..."></textarea>
+                </div>
+
+                <div class="btn-group">
+                    <button class="btn btn-sm" onclick="verificarAtividade(1)">✅ Verificar</button>
+                    <button class="btn btn-sm btn-secondary" onclick="limparResposta(1)">🔄 Limpar</button>
+                </div>
+
+                <div id="feedback1" style="margin-top: 8px;"></div>
+            </div>
+
+            <!-- ATIVIDADE 2: ARROW FUNCTION -->
+            <div class="atividade" id="atv2">
+                <div>
+                    <span class="numero">2</span>
+                    <span class="titulo">Arrow Function - Dobro de um Número</span>
+                </div>
+
+                <div class="enunciado">
+                    <p><strong>📌 Enunciado:</strong></p>
+                    <p>Crie uma <strong>arrow function</strong> chamada <code>calcularDobro</code> que:</p>
+                    <ul style="margin: 8px 0 8px 20px;">
+                        <li>Recebe um número como parâmetro</li>
+                        <li>Retorna o <strong>dobro</strong> desse número</li>
+                    </ul>
+                    <p>Teste a função com os números: <code>5</code>, <code>7</code> e <code>10</code>.</p>
+
+                    <div class="highlight-box blue" style="margin-top: 8px;">
+                        🔗 <strong>Link útil:</strong>
+                        <button class="btn btn-sm" onclick="abrirOneCompiler('atv2')" style="margin-left:8px;">
+                            ▶️ Abrir no OneCompiler
+                        </button>
+                    </div>
+                </div>
+
+                <div class="exemplo-codigo">
+                    <span class="comment">// Dica: arrow function</span>
+                    <span class="keyword">const</span> <span class="variable">calcularDobro</span> <span class="operator">=</span> (num) <span class="operator">=></span> num <span class="operator">*</span> <span class="number">2</span>;
+                </div>
+
+                <div class="saida-esperada">
+                    <strong>✅ Saída esperada:</strong><br>
+                    10<br>
+                    14<br>
+                    20
+                </div>
+
+                <div class="campo-resposta">
+                    <label>📋 Cole aqui a saída do console:</label>
+                    <textarea id="resposta2" placeholder="Cole a saída do OneCompiler aqui..."></textarea>
+                </div>
+
+                <div class="btn-group">
+                    <button class="btn btn-sm" onclick="verificarAtividade(2)">✅ Verificar</button>
+                    <button class="btn btn-sm btn-secondary" onclick="limparResposta(2)">🔄 Limpar</button>
+                </div>
+
+                <div id="feedback2" style="margin-top: 8px;"></div>
+            </div>
+
+            <!-- ATIVIDADE 3: CLOSURE -->
+            <div class="atividade" id="atv3">
+                <div>
+                    <span class="numero">3</span>
+                    <span class="titulo">Closure - Contador Personalizado</span>
+                </div>
+
+                <div class="enunciado">
+                    <p><strong>📌 Enunciado:</strong></p>
+                    <p>Crie uma função chamada <code>criarContador</code> que:</p>
+                    <ul style="margin: 8px 0 8px 20px;">
+                        <li>Retorna uma função que <strong>incrementa</strong> um contador a cada chamada</li>
+                        <li>O contador deve começar em <strong>0</strong></li>
+                        <li>A cada chamada, o contador aumenta em <strong>1</strong> e retorna o valor atual</li>
+                    </ul>
+                    <p>Crie dois contadores diferentes e mostre os resultados.</p>
+
+                    <div class="highlight-box blue" style="margin-top: 8px;">
+                        🔗 <strong>Link útil:</strong>
+                        <button class="btn btn-sm" onclick="abrirOneCompiler('atv3')" style="margin-left:8px;">
+                            ▶️ Abrir no OneCompiler
+                        </button>
+                    </div>
+                </div>
+
+                <div class="exemplo-codigo">
+                    <span class="comment">// Dica: closure</span>
+                    <span class="keyword">function</span> <span class="function">criarContador</span>() {<br>
+                    &nbsp;&nbsp;<span class="keyword">let</span> count <span class="operator">=</span> <span class="number">0</span>;<br>
+                    &nbsp;&nbsp;<span class="keyword">return</span> <span class="keyword">function</span>() {<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;count<span class="operator">++</span>;<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">return</span> count;<br>
+                    &nbsp;&nbsp;};<br>
+                    }
+                </div>
+
+                <div class="saida-esperada">
+                    <strong>✅ Saída esperada:</strong><br>
+                    1<br>
+                    2<br>
+                    1<br>
+                    2
+                </div>
+
+                <div class="campo-resposta">
+                    <label>📋 Cole aqui a saída do console:</label>
+                    <textarea id="resposta3" placeholder="Cole a saída do OneCompiler aqui..."></textarea>
+                </div>
+
+                <div class="btn-group">
+                    <button class="btn btn-sm" onclick="verificarAtividade(3)">✅ Verificar</button>
+                    <button class="btn btn-sm btn-secondary" onclick="limparResposta(3)">🔄 Limpar</button>
+                </div>
+
+                <div id="feedback3" style="margin-top: 8px;"></div>
+            </div>
+
+            <!-- ATIVIDADE 4: FUNÇÃO CONSTRUTORA -->
+            <div class="atividade" id="atv4">
+                <div>
+                    <span class="numero">4</span>
+                    <span class="titulo">Função Construtora - Cadastro de Pessoas</span>
+                </div>
+
+                <div class="enunciado">
+                    <p><strong>📌 Enunciado:</strong></p>
+                    <p>Crie uma <strong>função construtora</strong> chamada <code>Pessoa</code> que:</p>
+                    <ul style="margin: 8px 0 8px 20px;">
+                        <li>Recebe <strong>nome</strong> e <strong>idade</strong> como parâmetros</li>
+                        <li>Cria um objeto com as propriedades <code>nome</code> e <code>idade</code></li>
+                        <li>Inclui um método <code>apresentar()</code> que retorna "Olá, meu nome é [nome] e tenho [idade] anos"</li>
+                    </ul>
+                    <p>Crie duas pessoas diferentes e exiba seus dados.</p>
+
+                    <div class="highlight-box blue" style="margin-top: 8px;">
+                        🔗 <strong>Link útil:</strong>
+                        <button class="btn btn-sm" onclick="abrirOneCompiler('atv4')" style="margin-left:8px;">
+                            ▶️ Abrir no OneCompiler
+                        </button>
+                    </div>
+                </div>
+
+                <div class="exemplo-codigo">
+                    <span class="comment">// Dica: função construtora</span>
+                    <span class="keyword">function</span> <span class="function">Pessoa</span>(nome, idade) {<br>
+                    &nbsp;&nbsp;<span class="keyword">this</span>.<span class="variable">nome</span> <span class="operator">=</span> nome;<br>
+                    &nbsp;&nbsp;<span class="keyword">this</span>.<span class="variable">idade</span> <span class="operator">=</span> idade;<br>
+                    &nbsp;&nbsp;<span class="keyword">this</span>.<span class="variable">apresentar</span> <span class="operator">=</span> <span class="keyword">function</span>() {<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">return</span> <span class="string">"Olá, meu nome é "</span> <span class="operator">+</span> <span class="keyword">this</span>.<span class="variable">nome</span> <span class="operator">+</span> <span class="string">" e tenho "</span> <span class="operator">+</span> <span class="keyword">this</span>.<span class="variable">idade</span> <span class="operator">+</span> <span class="string">" anos"</span>;<br>
+                    &nbsp;&nbsp;};<br>
+                    }
+                </div>
+
+                <div class="saida-esperada">
+                    <strong>✅ Saída esperada:</strong><br>
+                    Olá, meu nome é Ana e tenho 25 anos<br>
+                    Olá, meu nome é João e tenho 30 anos
+                </div>
+
+                <div class="campo-resposta">
+                    <label>📋 Cole aqui a saída do console:</label>
+                    <textarea id="resposta4" placeholder="Cole a saída do OneCompiler aqui..."></textarea>
+                </div>
+
+                <div class="btn-group">
+                    <button class="btn btn-sm" onclick="verificarAtividade(4)">✅ Verificar</button>
+                    <button class="btn btn-sm btn-secondary" onclick="limparResposta(4)">🔄 Limpar</button>
+                </div>
+
+                <div id="feedback4" style="margin-top: 8px;"></div>
+            </div>
+
+            <!-- ATIVIDADE 5: FUNÇÃO COM RETORNO -->
+            <div class="atividade" id="atv5">
+                <div>
+                    <span class="numero">5</span>
+                    <span class="titulo">Função com Retorno - Calculadora Simples</span>
+                </div>
+
+                <div class="enunciado">
+                    <p><strong>📌 Enunciado:</strong></p>
+                    <p>Crie uma função chamada <code>calculadora</code> que:</p>
+                    <ul style="margin: 8px 0 8px 20px;">
+                        <li>Recebe <strong>dois números</strong> e uma <strong>operação</strong> (soma, subtracao, multiplicacao, divisao)</li>
+                        <li>Retorna o <strong>resultado</strong> da operação</li>
+                        <li>Se a operação for inválida, retorna <strong>"Operação inválida"</strong></li>
+                    </ul>
+                    <p>Teste com: <code>soma(10, 5)</code>, <code>subtracao(10, 5)</code> e <code>multiplicacao(10, 5)</code>.</p>
+
+                    <div class="highlight-box blue" style="margin-top: 8px;">
+                        🔗 <strong>Link útil:</strong>
+                        <button class="btn btn-sm" onclick="abrirOneCompiler('atv5')" style="margin-left:8px;">
+                            ▶️ Abrir no OneCompiler
+                        </button>
+                    </div>
+                </div>
+
+                <div class="exemplo-codigo">
+                    <span class="comment">// Dica: função com múltiplos parâmetros</span>
+                    <span class="keyword">function</span> <span class="function">calculadora</span>(num1, num2, operacao) {<br>
+                    &nbsp;&nbsp;<span class="keyword">if</span> (operacao <span class="operator">===</span> <span class="string">"soma"</span>) <span class="keyword">return</span> num1 <span class="operator">+</span> num2;<br>
+                    &nbsp;&nbsp;<span class="keyword">if</span> (operacao <span class="operator">===</span> <span class="string">"subtracao"</span>) <span class="keyword">return</span> num1 <span class="operator">-</span> num2;<br>
+                    &nbsp;&nbsp;<span class="keyword">if</span> (operacao <span class="operator">===</span> <span class="string">"multiplicacao"</span>) <span class="keyword">return</span> num1 <span class="operator">*</span> num2;<br>
+                    &nbsp;&nbsp;<span class="keyword">if</span> (operacao <span class="operator">===</span> <span class="string">"divisao"</span>) <span class="keyword">return</span> num1 <span class="operator">/</span> num2;<br>
+                    &nbsp;&nbsp;<span class="keyword">return</span> <span class="string">"Operação inválida"</span>;<br>
+                    }
+                </div>
+
+                <div class="saida-esperada">
+                    <strong>✅ Saída esperada:</strong><br>
+                    15<br>
+                    5<br>
+                    50
+                </div>
+
+                <div class="campo-resposta">
+                    <label>📋 Cole aqui a saída do console:</label>
+                    <textarea id="resposta5" placeholder="Cole a saída do OneCompiler aqui..."></textarea>
+                </div>
+
+                <div class="btn-group">
+                    <button class="btn btn-sm" onclick="verificarAtividade(5)">✅ Verificar</button>
+                    <button class="btn btn-sm btn-secondary" onclick="limparResposta(5)">🔄 Limpar</button>
+                </div>
+
+                <div id="feedback5" style="margin-top: 8px;"></div>
+            </div>
+
+            <!-- ATIVIDADE 6: FUNÇÃO COM PARÂMETROS DEFAULT -->
+            <div class="atividade" id="atv6">
+                <div>
+                    <span class="numero">6</span>
+                    <span class="titulo">Parâmetros Default - Saudação Personalizada</span>
+                </div>
+
+                <div class="enunciado">
+                    <p><strong>📌 Enunciado:</strong></p>
+                    <p>Crie uma função chamada <code>saudacao</code> que:</p>
+                    <ul style="margin: 8px 0 8px 20px;">
+                        <li>Recebe um parâmetro <strong>nome</strong> (com valor padrão "Visitante")</li>
+                        <li>Recebe um parâmetro <strong>idioma</strong> (com valor padrão "pt")</li>
+                        <li>Se idioma for "pt", retorna "Olá, [nome]!"</li>
+                        <li>Se idioma for "en", retorna "Hello, [nome]!"</li>
+                        <li>Se idioma for "es", retorna "Hola, [nome]!"</li>
+                    </ul>
+                    <p>Teste com diferentes combinações.</p>
+
+                    <div class="highlight-box blue" style="margin-top: 8px;">
+                        🔗 <strong>Link útil:</strong>
+                        <button class="btn btn-sm" onclick="abrirOneCompiler('atv6')" style="margin-left:8px;">
+                            ▶️ Abrir no OneCompiler
+                        </button>
+                    </div>
+                </div>
+
+                <div class="exemplo-codigo">
+                    <span class="comment">// Dica: parâmetros com valor padrão</span>
+                    <span class="keyword">function</span> <span class="function">saudacao</span>(nome <span class="operator">=</span> <span class="string">"Visitante"</span>, idioma <span class="operator">=</span> <span class="string">"pt"</span>) {<br>
+                    &nbsp;&nbsp;<span class="keyword">if</span> (idioma <span class="operator">===</span> <span class="string">"pt"</span>) <span class="keyword">return</span> <span class="string">"Olá, "</span> <span class="operator">+</span> nome <span class="operator">+</span> <span class="string">"!"</span>;<br>
+                    &nbsp;&nbsp;<span class="keyword">if</span> (idioma <span class="operator">===</span> <span class="string">"en"</span>) <span class="keyword">return</span> <span class="string">"Hello, "</span> <span class="operator">+</span> nome <span class="operator">+</span> <span class="string">"!"</span>;<br>
+                    &nbsp;&nbsp;<span class="keyword">if</span> (idioma <span class="operator">===</span> <span class="string">"es"</span>) <span class="keyword">return</span> <span class="string">"Hola, "</span> <span class="operator">+</span> nome <span class="operator">+</span> <span class="string">"!"</span>;<br>
+                    &nbsp;&nbsp;<span class="keyword">return</span> <span class="string">"Idioma não suportado"</span>;<br>
+                    }
+                </div>
+
+                <div class="saida-esperada">
+                    <strong>✅ Saída esperada:</strong><br>
+                    Olá, Ana!<br>
+                    Hello, John!<br>
+                    Hola, Carlos!<br>
+                    Olá, Visitante!
+                </div>
+
+                <div class="campo-resposta">
+                    <label>📋 Cole aqui a saída do console:</label>
+                    <textarea id="resposta6" placeholder="Cole a saída do OneCompiler aqui..."></textarea>
+                </div>
+
+                <div class="btn-group">
+                    <button class="btn btn-sm" onclick="verificarAtividade(6)">✅ Verificar</button>
+                    <button class="btn btn-sm btn-secondary" onclick="limparResposta(6)">🔄 Limpar</button>
+                </div>
+
+                <div id="feedback6" style="margin-top: 8px;"></div>
+            </div>
+
+            <!-- ATIVIDADE 7: CALLBACK -->
+            <div class="atividade" id="atv7">
+                <div>
+                    <span class="numero">7</span>
+                    <span class="titulo">Callback - Função como Parâmetro</span>
+                </div>
+
+                <div class="enunciado">
+                    <p><strong>📌 Enunciado:</strong></p>
+                    <p>Crie uma função chamada <code>processarArray</code> que:</p>
+                    <ul style="margin: 8px 0 8px 20px;">
+                        <li>Recebe um <strong>array de números</strong> e uma <strong>função callback</strong></li>
+                        <li>Aplica a função callback a <strong>cada elemento</strong> do array</li>
+                        <li>Retorna um <strong>novo array</strong> com os resultados</li>
+                    </ul>
+                    <p>Teste com um array de números e uma função que calcula o dobro.</p>
+
+                    <div class="highlight-box blue" style="margin-top: 8px;">
+                        🔗 <strong>Link útil:</strong>
+                        <button class="btn btn-sm" onclick="abrirOneCompiler('atv7')" style="margin-left:8px;">
+                            ▶️ Abrir no OneCompiler
+                        </button>
+                    </div>
+                </div>
+
+                <div class="exemplo-codigo">
+                    <span class="comment">// Dica: função callback</span>
+                    <span class="keyword">function</span> <span class="function">processarArray</span>(array, callback) {<br>
+                    &nbsp;&nbsp;<span class="keyword">let</span> resultado <span class="operator">=</span> [];<br>
+                    &nbsp;&nbsp;<span class="keyword">for</span> (<span class="keyword">let</span> i <span class="operator">=</span> <span class="number">0</span>; i <span class="operator"><</span> array.length; i<span class="operator">++</span>) {<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;resultado.push(callback(array[i]));<br>
+                    &nbsp;&nbsp;}<br>
+                    &nbsp;&nbsp;<span class="keyword">return</span> resultado;<br>
+                    }
+                </div>
+
+                <div class="saida-esperada">
+                    <strong>✅ Saída esperada:</strong><br>
+                    [2, 4, 6, 8, 10]
+                </div>
+
+                <div class="campo-resposta">
+                    <label>📋 Cole aqui a saída do console:</label>
+                    <textarea id="resposta7" placeholder="Cole a saída do OneCompiler aqui..."></textarea>
+                </div>
+
+                <div class="btn-group">
+                    <button class="btn btn-sm" onclick="verificarAtividade(7)">✅ Verificar</button>
+                    <button class="btn btn-sm btn-secondary" onclick="limparResposta(7)">🔄 Limpar</button>
+                </div>
+
+                <div id="feedback7" style="margin-top: 8px;"></div>
+            </div>
+
+            <!-- ATIVIDADE 8: FUNÇÃO COM RETURN DE OBJETO -->
+            <div class="atividade" id="atv8">
+                <div>
+                    <span class="numero">8</span>
+                    <span class="titulo">Retornando Objetos - Criador de Pessoas</span>
+                </div>
+
+                <div class="enunciado">
+                    <p><strong>📌 Enunciado:</strong></p>
+                    <p>Crie uma função chamada <code>criarPessoa</code> que:</p>
+                    <ul style="margin: 8px 0 8px 20px;">
+                        <li>Recebe <strong>nome</strong>, <strong>idade</strong> e <strong>cidade</strong></li>
+                        <li>Retorna um <strong>objeto</strong> com essas informações</li>
+                        <li>Inclui um método <code>exibir()</code> que mostra todas as informações</li>
+                    </ul>
+                    <p>Crie 3 pessoas diferentes e exiba seus dados.</p>
+
+                    <div class="highlight-box blue" style="margin-top: 8px;">
+                        🔗 <strong>Link útil:</strong>
+                        <button class="btn btn-sm" onclick="abrirOneCompiler('atv8')" style="margin-left:8px;">
+                            ▶️ Abrir no OneCompiler
+                        </button>
+                    </div>
+                </div>
+
+                <div class="exemplo-codigo">
+                    <span class="comment">// Dica: função que retorna objeto</span>
+                    <span class="keyword">function</span> <span class="function">criarPessoa</span>(nome, idade, cidade) {<br>
+                    &nbsp;&nbsp;<span class="keyword">return</span> {<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;nome: nome,<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;idade: idade,<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;cidade: cidade,<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;exibir: <span class="keyword">function</span>() {<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">return</span> <span class="string">"Nome: "</span> <span class="operator">+</span> <span class="keyword">this</span>.nome <span class="operator">+</span> <span class="string">", Idade: "</span> <span class="operator">+</span> <span class="keyword">this</span>.idade <span class="operator">+</span> <span class="string">", Cidade: "</span> <span class="operator">+</span> <span class="keyword">this</span>.cidade;<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;}<br>
+                    &nbsp;&nbsp;};<br>
+                    }
+                </div>
+
+                <div class="saida-esperada">
+                    <strong>✅ Saída esperada:</strong><br>
+                    Nome: Ana, Idade: 25, Cidade: São Paulo<br>
+                    Nome: João, Idade: 30, Cidade: Rio de Janeiro<br>
+                    Nome: Maria, Idade: 22, Cidade: Belo Horizonte
+                </div>
+
+                <div class="campo-resposta">
+                    <label>📋 Cole aqui a saída do console:</label>
+                    <textarea id="resposta8" placeholder="Cole a saída do OneCompiler aqui..."></textarea>
+                </div>
+
+                <div class="btn-group">
+                    <button class="btn btn-sm" onclick="verificarAtividade(8)">✅ Verificar</button>
+                    <button class="btn btn-sm btn-secondary" onclick="limparResposta(8)">🔄 Limpar</button>
+                </div>
+
+                <div id="feedback8" style="margin-top: 8px;"></div>
+            </div>
+
+            <!-- BOTÕES GERAIS -->
+            <div style="text-align: center; margin-top: 20px;" class="no-print">
+                <button class="btn" onclick="verificarTodas()">✅ Verificar todas</button>
+                <button class="btn btn-secondary" onclick="limparTodas()">🔄 Limpar todas</button>
+                <button class="btn btn-danger" onclick="recomecar()">🔁 Recomeçar</button>
+            </div>
+
+            <!-- RESULTADO GERAL -->
+            <div class="result-box" id="resultadoGeral">
+                <h2>📊 Resultado Final</h2>
+                <div class="score" id="pontuacaoGeral">0 / 8</div>
+                <div id="feedbackGeral"></div>
+                <div style="margin-top: 15px;" class="no-print">
+                    <button class="btn btn-success" onclick="window.print()">🖨️ Imprimir Resultado (PDF)</button>
+                    <button class="btn btn-danger" onclick="recomecar()">🔁 Recomeçar</button>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- ============================================================
+        FOOTER
+        ============================================================ -->
+        <div class="footer no-print">
+            <p>🛠️ TEMA 7 - Atividades Práticas | Funções em JavaScript</p>
+            <p>🧩 Pratique com OneCompiler e teste seus conhecimentos!</p>
+        </div>
+
+    </div>
+
+    <!-- ============================================================
+    BOTÃO TOPO
+    ============================================================ -->
+    <button class="btn-top no-print" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">⬆️ Topo</button>
+
+    <!-- ============================================================
+    SCRIPTS
+    ============================================================ -->
+    <script>
+        // ============================================================
+        // ABRIR ONECOMPILER
+        // ============================================================
+        function abrirOneCompiler(atividade) {
+            const codigos = {
+                atv1: `// ATIVIDADE 1: Função Nomeada - Verificador de Números
+        function verificarNumero(num) {
+            if (num > 0) {
+                return "Positivo";
+            } else if (num < 0) {
+                return "Negativo";
+            } else {
+                return "Zero";
+            }
+        }
+
+        console.log(verificarNumero(5));
+        console.log(verificarNumero(-3));
+        console.log(verificarNumero(0));`,
+
+                atv2: `// ATIVIDADE 2: Arrow Function - Dobro de um Número
+        const calcularDobro = (num) => num * 2;
+
+        console.log(calcularDobro(5));
+        console.log(calcularDobro(7));
+        console.log(calcularDobro(10));`,
+
+                atv3: `// ATIVIDADE 3: Closure - Contador Personalizado
+        function criarContador() {
+            let count = 0;
+            return function() {
+                count++;
+                return count;
+            };
+        }
+
+        const contador1 = criarContador();
+        const contador2 = criarContador();
+
+        console.log(contador1());
+        console.log(contador1());
+        console.log(contador2());
+        console.log(contador2());`,
+
+                atv4: `// ATIVIDADE 4: Função Construtora - Cadastro de Pessoas
+        function Pessoa(nome, idade) {
+            this.nome = nome;
+            this.idade = idade;
+            this.apresentar = function() {
+                return "Olá, meu nome é " + this.nome + " e tenho " + this.idade + " anos";
+            };
+        }
+
+        const pessoa1 = new Pessoa("Ana", 25);
+        const pessoa2 = new Pessoa("João", 30);
+
+        console.log(pessoa1.apresentar());
+        console.log(pessoa2.apresentar());`,
+
+                atv5: `// ATIVIDADE 5: Função com Retorno - Calculadora Simples
+        function calculadora(num1, num2, operacao) {
+            if (operacao === "soma") return num1 + num2;
+            if (operacao === "subtracao") return num1 - num2;
+            if (operacao === "multiplicacao") return num1 * num2;
+            if (operacao === "divisao") return num1 / num2;
+            return "Operação inválida";
+        }
+
+        console.log(calculadora(10, 5, "soma"));
+        console.log(calculadora(10, 5, "subtracao"));
+        console.log(calculadora(10, 5, "multiplicacao"));`,
+
+                atv6: `// ATIVIDADE 6: Parâmetros Default - Saudação Personalizada
+        function saudacao(nome = "Visitante", idioma = "pt") {
+            if (idioma === "pt") return "Olá, " + nome + "!";
+            if (idioma === "en") return "Hello, " + nome + "!";
+            if (idioma === "es") return "Hola, " + nome + "!";
+            return "Idioma não suportado";
+        }
+
+        console.log(saudacao("Ana", "pt"));
+        console.log(saudacao("John", "en"));
+        console.log(saudacao("Carlos", "es"));
+        console.log(saudacao());`,
+
+                atv7: `// ATIVIDADE 7: Callback - Função como Parâmetro
+        function processarArray(array, callback) {
+            let resultado = [];
+            for (let i = 0; i < array.length; i++) {
+                resultado.push(callback(array[i]));
+            }
+            return resultado;
+        }
+
+        const numeros = [1, 2, 3, 4, 5];
+        const dobro = (num) => num * 2;
+
+        console.log(processarArray(numeros, dobro));`,
+
+                atv8: `// ATIVIDADE 8: Retornando Objetos - Criador de Pessoas
+        function criarPessoa(nome, idade, cidade) {
+            return {
+                nome: nome,
+                idade: idade,
+                cidade: cidade,
+                exibir: function() {
+                    return "Nome: " + this.nome + ", Idade: " + this.idade + ", Cidade: " + this.cidade;
+                }
+            };
+        }
+
+        const pessoa1 = criarPessoa("Ana", 25, "São Paulo");
+        const pessoa2 = criarPessoa("João", 30, "Rio de Janeiro");
+        const pessoa3 = criarPessoa("Maria", 22, "Belo Horizonte");
+
+        console.log(pessoa1.exibir());
+        console.log(pessoa2.exibir());
+        console.log(pessoa3.exibir());`
+            };
+
+            const url = 'https://onecompiler.com/javascript?code=' + encodeURIComponent(codigos[atividade]);
+            window.open(url, '_blank');
+        }
+
+        // ============================================================
+        // FUNÇÃO DE NORMALIZAÇÃO INTELIGENTE
+        // ============================================================
+        function normalizar(texto) {
+            return texto
+                .trim()
+                .replace(/\s*,\s*/g, ',')
+                .replace(/\[\s*/g, '[')
+                .replace(/\s*\]/g, ']')
+                .replace(/\s+/g, ' ')
+                .replace(/'/g, '"')
+                .replace(/\[\s*"/g, '["')
+                .replace(/"\s*\]/g, '"]')
+                .replace(/,\s*"/g, ', "')
+                .trim();
+        }
+
+        // ============================================================
+        // GABARITO DAS ATIVIDADES
+        // ============================================================
+        const gabarito = {
+            1: {
+                saidas: ['Positivo', 'Negativo', 'Zero'],
+                normalize: function(texto) {
+                    return texto.trim().replace(/\s+/g, ' ');
+                }
+            },
+            2: {
+                saidas: ['10', '14', '20'],
+                normalize: function(texto) {
+                    return texto.trim().replace(/\s+/g, ' ');
+                }
+            },
+            3: {
+                saidas: ['1', '2', '1', '2'],
+                normalize: function(texto) {
+                    return texto.trim().replace(/\s+/g, ' ');
+                }
+            },
+            4: {
+                saidas: ['Olá, meu nome é Ana e tenho 25 anos', 'Olá, meu nome é João e tenho 30 anos'],
+                normalize: function(texto) {
+                    return texto.trim().replace(/\s+/g, ' ');
+                }
+            },
+            5: {
+                saidas: ['15', '5', '50'],
+                normalize: function(texto) {
+                    return texto.trim().replace(/\s+/g, ' ');
+                }
+            },
+            6: {
+                saidas: ['Olá, Ana!', 'Hello, John!', 'Hola, Carlos!', 'Olá, Visitante!'],
+                normalize: function(texto) {
+                    return texto.trim().replace(/\s+/g, ' ');
+                }
+            },
+            7: {
+                saidas: ['[2,4,6,8,10]'],
+                normalize: normalizar
+            },
+            8: {
+                saidas: [
+                    'Nome: Ana, Idade: 25, Cidade: São Paulo',
+                    'Nome: João, Idade: 30, Cidade: Rio de Janeiro',
+                    'Nome: Maria, Idade: 22, Cidade: Belo Horizonte'
+                ],
+                normalize: function(texto) {
+                    return texto.trim().replace(/\s+/g, ' ');
+                }
+            }
+        };
+
+        // ============================================================
+        // VERIFICAR ATIVIDADE INDIVIDUAL
+        // ============================================================
+        function verificarAtividade(num) {
+            const textarea = document.getElementById('resposta' + num);
+            const feedback = document.getElementById('feedback' + num);
+            const resposta = textarea.value.trim();
+
+            if (resposta === '') {
+                feedback.innerHTML = '<div class="highlight-box orange">⚠️ Cole a saída do console antes de verificar!</div>';
+                return;
+            }
+
+            const gab = gabarito[num];
+            const linhas = resposta.split('\n').filter(line => line.trim() !== '');
+            const linhasNormalizadas = linhas.map(gab.normalize);
+            const esperadoNormalizado = gab.saidas.map(gab.normalize);
+
+            let corretas = 0;
+            let resultadoHTML = '';
+
+            for (let i = 0; i < esperadoNormalizado.length; i++) {
+                const linhaAtual = linhasNormalizadas[i] || '';
+                const isCorrect = linhaAtual === esperadoNormalizado[i];
+
+                if (isCorrect) {
+                    corretas++;
+                    resultadoHTML += `<div class="resultado-item correct">✅ Linha ${i+1}: "${linhas[i] || ''}" - Correta</div>`;
+                } else {
+                    resultadoHTML +=
+                        `<div class="resultado-item wrong">❌ Linha ${i+1}: "${linhas[i] || ''}" - Incorreta (esperado: "${gab.saidas[i]}")</div>`;
+                }
+            }
+
+            if (linhas.length > esperadoNormalizado.length) {
+                for (let i = esperadoNormalizado.length; i < linhas.length; i++) {
+                    resultadoHTML +=
+                        `<div class="resultado-item wrong">⚠️ Linha ${i+1}: "${linhas[i]}" - Extra (não esperado)</div>`;
+                }
+            }
+
+            const total = esperadoNormalizado.length;
+            const percentual = Math.round((corretas / total) * 100);
+
+            let status = '';
+            let cor = '';
+            if (percentual === 100 && linhas.length === total) {
+                status = '🎉 Perfeito! Todas as linhas estão corretas!';
+                cor = 'green';
+                textarea.className = 'correct';
+            } else if (percentual >= 50) {
+                status = `💪 Quase lá! Você acertou ${corretas} de ${total} linhas.`;
+                cor = 'blue';
+                textarea.className = '';
+            } else {
+                status = `📚 Continue praticando! Você acertou ${corretas} de ${total} linhas.`;
+                cor = 'orange';
+                textarea.className = 'wrong';
+            }
+
+            const sugestao = gab.saidas.join('\n');
+
+            feedback.innerHTML = `
+                    <div class="highlight-box ${cor}" style="margin-top: 8px;">
+                        <strong>${status}</strong>
+                        <div style="margin-top: 4px;">${resultadoHTML}</div>
+                        <div style="margin-top: 8px; font-size: 0.85rem;">
+                            💡 <strong>Sugestão de saída:</strong>
+                            <div style="background: #f0f0f0; color: #1a1a2e; padding: 8px 12px; border-radius: 6px; font-family: monospace; margin-top: 4px; font-size: 0.8rem; border: 1px solid #dee2e6;">
+                                ${sugestao}
+                            </div>
+                        </div>
+                    </div>
+                `;
+
+            textarea.disabled = true;
+            textarea.classList.add('disabled');
+        }
+
+        // ============================================================
+        // VERIFICAR TODAS
+        // ============================================================
+        function verificarTodas() {
+            let total = 0;
+            let acertos = 0;
+            let feedbackHTML = '';
+
+            for (let i = 1; i <= 8; i++) {
+                const textarea = document.getElementById('resposta' + i);
+                const resposta = textarea.value.trim();
+
+                if (resposta === '') {
+                    feedbackHTML += `<div class="resultado-item wrong">❌ Atividade ${i} - Não respondida</div>`;
+                    continue;
+                }
+
+                total++;
+                const gab = gabarito[i];
+                const linhas = resposta.split('\n').filter(line => line.trim() !== '');
+                const linhasNormalizadas = linhas.map(gab.normalize);
+                const esperadoNormalizado = gab.saidas.map(gab.normalize);
+
+                let corretas = 0;
+                for (let j = 0; j < esperadoNormalizado.length; j++) {
+                    if (linhasNormalizadas[j] === esperadoNormalizado[j]) {
+                        corretas++;
+                    }
+                }
+
+                const percentual = Math.round((corretas / esperadoNormalizado.length) * 100);
+                if (percentual === 100 && linhas.length === esperadoNormalizado.length) {
+                    acertos++;
+                    feedbackHTML += `<div class="resultado-item correct">✅ Atividade ${i} - Correta</div>`;
+                } else {
+                    feedbackHTML +=
+                        `<div class="resultado-item wrong">❌ Atividade ${i} - Incorreta (${corretas}/${esperadoNormalizado.length} linhas corretas)</div>`;
+                }
+
+                textarea.disabled = true;
+                textarea.classList.add('disabled');
+                if (percentual === 100 && linhas.length === esperadoNormalizado.length) {
+                    textarea.className = 'correct';
+                } else {
+                    textarea.className = 'wrong';
+                }
+            }
+
+            document.getElementById('pontuacaoGeral').textContent = acertos + ' / ' + total;
+            document.getElementById('feedbackGeral').innerHTML = feedbackHTML;
+            document.getElementById('resultadoGeral').classList.add('show');
+
+            document.getElementById('resultadoGeral').scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+
+        // ============================================================
+        // LIMPAR RESPOSTA INDIVIDUAL
+        // ============================================================
+        function limparResposta(num) {
+            const textarea = document.getElementById('resposta' + num);
+            const feedback = document.getElementById('feedback' + num);
+
+            textarea.value = '';
+            textarea.disabled = false;
+            textarea.className = '';
+            textarea.classList.remove('correct', 'wrong', 'disabled');
+            feedback.innerHTML = '';
+        }
+
+        // ============================================================
+        // LIMPAR TODAS
+        // ============================================================
+        function limparTodas() {
+            for (let i = 1; i <= 8; i++) {
+                limparResposta(i);
+            }
+            document.getElementById('resultadoGeral').classList.remove('show');
+        }
+
+        // ============================================================
+        // RECOMEÇAR
+        // ============================================================
+        function recomecar() {
+            if (confirm('🔁 Tem certeza que deseja recomeçar? Todas as respostas serão apagadas.')) {
+                limparTodas();
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+        }
+
+        // ============================================================
+        // PERMITE PASTAR NO TEXTAREA
+        // ============================================================
+        document.querySelectorAll('.campo-resposta textarea').forEach(textarea => {
+            textarea.addEventListener('paste', function(e) {
+                setTimeout(() => {
+                    this.value = this.value.trim();
+                }, 100);
+            });
+        });
+    </script>
+
+</body>
+</html>
